@@ -30,7 +30,8 @@ html {
     align-items: center;
 }
 
-.shadow {
+#img-circle {
+    border-radius: 50%;
     box-shadow: 1px 1px 2px black, 0 0 15px purple, 0 0 15px red;
 }
 

@@ -10,49 +10,49 @@ $(function () {
       question: "From which planet do the Transformers originate?",
       choices: ["Cybertron", "Earth", "Junkion", "Quintessa"],
       correctAnswer: "Cybertron",
-      image: "<img src='assets/images/cybertronanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/cybertronanswer.jpg' id='img-circle'>"
     },
     {
       question: "Finish this song lyric: 'You've got the touch, you've got the _ '",
       choices: ["Power", "Will", "Strength", "Heart"],
       correctAnswer: "Power",
-      image: "<img src='assets/images/matrixanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/matrixanswer.jpg' id='img-circle'>"
     },
     {
       question: "Before he became Rodimus Prime, he was known as...?",
       choices: ["KITT", "Hot Rod", "Mirage", "Air Wolf"],
       correctAnswer: "Hot Rod",
-      image: "<img src='assets/images/hotrodanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/hotrodanswer.jpg' id='img-circle'>"
     },
     {
       question: "Who was the first female Transformer to appear in the cartoon?",
       choices: ["Elita One", "Firestar", "Arcee", "Nautica"],
       correctAnswer: "Arcee",
-      image: "<img src='assets/images/arceeanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/arceeanswer.jpg' id='img-circle'>"
     },
     {
       question: "In Beast Wars, Megatron is protrayed as a _ ?",
       choices: ["Stegosaurus", "Triceratops", "Tyrannosaurus Rex", "Velociraptor"],
       correctAnswer: "Tyrannosaurus Rex",
-      image: "<img src='assets/images/megatronanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/megatronanswer.jpg' id='img-circle'>"
     },
     {
       question: "Scatman Crothers is known for voicing this Transformer?",
       choices: ["Rumble", "Blurr", "Black Arachnia", "Jazz"],
       correctAnswer: "Jazz",
-      image: "<img src='assets/images/jazzanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/jazzanswer.jpg' id='img-circle'>"
     },
     {
       question: "Which of these Transformers is a Combiner?",
       choices: ["Skytrain", "Devastator", "Scourge", "Beta"],
       correctAnswer: "Devastator",
-      image: "<img src='assets/images/devastatoranswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/devastatoranswer.jpg' id='img-circle'>"
     },
     {
       question: "Transformers 'borrowed' this character design from the Anime 'Macross'.",
       choices: ["Ramjet", "Starscream", "Thrust", "Jetfire"],
       correctAnswer: "Jetfire",
-      image: "<img src='assets/images/jetfireanswer.jpg' class='img-circle shadow'>"
+      image: "<img src='assets/images/jetfireanswer.jpg' id='img-circle'>"
     }];
 
   $("#start").click(playRound);
@@ -87,12 +87,12 @@ $(function () {
   function evaluateAnswer(answerChoice) {
     if (answerChoice === questions[round].correctAnswer) {
       displayWinMessage();
-      // setTimeout(playRound, 4000);
+      setTimeout(playRound, 4000);
       corGuesses++;
       round++;
     } else {
       displayWrongMessage();
-      // setTimeout(playRound, 4000);
+      setTimeout(playRound, 4000);
       incorGuesses++;
       round++;
     }
