@@ -1,5 +1,7 @@
 $(function () {
 
+  $("#start").click(playRound);
+
 var round = 0;
 var timeLeft = 15;
 var corGuesses = 0;
@@ -7,8 +9,8 @@ var incorGuesses = 0;
 var gameBoard = $('#gamearea');
 var questions = [
   {
-    question: "What planet do the Transformers originate?",
-    choices: ["Cybertron", "Earth", "Junkiion", "Quintessa"],
+    question: "From which planet do the Transformers originate?",
+    choices: ["Cybertron", "Earth", "Junkion", "Quintessa"],
     correctAnswer: "Cybertron",
     image: "<img src='assets/images/cybertronanswer.jpg' class='img-circle shadow'>"
   }, 
@@ -73,7 +75,7 @@ gameBoard.append(question);
 function displayAnswerChoices() {
 var answerBox = $('<div>');
 for (let i = 0; i < 4; i++) {
-  var answerChoice = $('<button>');
+  var answerChoice = $('<h6>');
   answerChoice.text(questions[round].choices[i]);
   answerChoice.attr('choice', questions[round].choices[i]);
   answerBox.append(answerChoice);
@@ -107,12 +109,11 @@ function displayWrongMessage() {
   gameBoard.append('<p>The correct answer was ' + questions[round].correctAnswer + '!</p>' + questions[round].image);
 };
 
-gameBoard.on('click', 'button', function () {
+gameBoard.on('click', 'h6', function () {
   var choice = $(this).attr('choice');
   evaluateAnswer(choice);
 });
 
-$("#start").click(playRound);
 
 // reset the game
 
