@@ -5,5 +5,42 @@ body {
 
 html {
     cursor: url(../images/matrix.png), auto;
+}
 
+* {
+    font-family: 'Kanit', sans-serif;
+}
+
+#start {
+    font: 800;
+    font-size: 3rem;
+    color: blue;
+}
+
+#start:hover {
+    text-shadow: 1px 1px 2px black, 0 0 15px purple, 0 0 15px red;
+}
+
+.jumbotron {
+    border: 10px solid black;
+}
+
+.shadow {
+    box-shadow: 1px 1px 2px black, 0 0 15px purple, 0 0 15px red;
+}
+
+.choices {
+	text-align: center;
+	border: solid 2px black;
+	border-radius: 5%;
+	margin: 0 35%;
+}
+
+.choices:hover {
+	background-color: purple;
+	color: white;
+}
+
+.shadow {
+	box-shadow: -7px 6px 5px -1px red;
 }
