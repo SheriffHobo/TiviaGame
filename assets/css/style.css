@@ -23,6 +23,11 @@ html {
 
 .jumbotron {
     border: 10px solid black;
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .shadow {
@@ -35,7 +40,6 @@ h6 {
     border: solid 1px black;
     margin: 0 auto;
     padding: 5px;
-    width: 25%;
 }
 
 h6:hover {
