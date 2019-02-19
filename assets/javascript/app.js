@@ -87,12 +87,12 @@ $(function () {
   function evaluateAnswer(answerChoice) {
     if (answerChoice === questions[round].correctAnswer) {
       displayWinMessage();
-      setTimeout(playRound, 4000);
+      // setTimeout(playRound, 4000);
       corGuesses++;
       round++;
     } else {
       displayWrongMessage();
-      setTimeout(playRound, 4000);
+      // setTimeout(playRound, 4000);
       incorGuesses++;
       round++;
     }
