@@ -2,7 +2,7 @@ $(function () {
 
   // Various containers
   var round = 0;
-  var timeLeft = 15;
+  var timeLeft = 10;
   var interval;
   var corGuesses = 0;
   var incorGuesses = 0;
@@ -73,20 +73,26 @@ $(function () {
 
   // Display Qs and As
   function showQuestion() {
-    $("#gamearea").html('<p>You have <span id=\'time\'>15</span> seconds to answer</p>');
-    timeLeft = 15;
+    // $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon to answer</p>');
+    timeLeft = 10;
     interval = setInterval(function() {
       timeLeft--; 
       $("#time").text(timeLeft);
       if(timeLeft === 0) {
+        clearBoard();
         clearInterval(interval);
         displayTimeoutMessage();
-        setTimeout(playRound, 4000);
+        setTimeout(playRound, 3000);
         incorGuesses++;
         round++;
-      }
+    } else if (round === 8) {
+      clearInterval(interval);
+      clearBoard();
+      displayScore();
+    }
     }, 1000);
     var question = $('<p>').text(questions[round].question);
+    $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon to answer</p>');
     gameBoard.append(question);
   };
 
@@ -105,12 +111,12 @@ $(function () {
   function evaluateAnswer(answerChoice) {
     if (answerChoice === questions[round].correctAnswer) {
       displayWinMessage();
-      setTimeout(playRound, 4000);
+      setTimeout(playRound, 3000);
       corGuesses++;
       round++;
     } else if (answerChoice !== questions[round].correctAnswer) {
       displayWrongMessage();
-      setTimeout(playRound, 4000);
+      setTimeout(playRound, 3000);
       incorGuesses++;
       round++;
     }
@@ -131,28 +137,25 @@ $(function () {
 
   function displayTimeoutMessage() {
     clearBoard();
-    $("#gamearea").html("<p>You have run out of time!</p>");
+    $("#gamearea").html("<p>You have run out of Energon!</p>");
     $("#gamearea").append('<p>The correct answer was ' + questions[round].correctAnswer + '!</p>' + questions[round].image);
   };
 
   function displayScore() {
     clearBoard();
-    $("#gamearea").html("<p>Game Over</p>");
-    $("#gamearea").html('<p>Correct answers:</p> ' + corGuesses);
-    $("#gamearea").html('<p>Inorrect answers:</p> ' + incorGuesses);
+    $("#gamearea").html('<h2>Game Over</h2> <p>Correct answers: ' + corGuesses + '</p> <p>Incorrect answers: ' + incorGuesses + '</p> <p>Try again?</p>');
+    $("#gamearea").append('<p id="start">Until All Are One!</p>');
   };
 
   // Click listener
   gameBoard.on('click', 'h6', function () {
     var choice = $(this).attr('choice');
     evaluateAnswer(choice);
+    clearInterval(interval);
   });
 
-  // Need Timer
-
-  // Need Score Page
-
-  // Need way to display score/reset page
+  // Need way to display score/reset 
+  // Need timer to stop and not display
 
 
 });
