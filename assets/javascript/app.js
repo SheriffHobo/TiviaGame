@@ -98,7 +98,7 @@ $(function () {
       }
     }, 1000);
     var question = $('<p>').text(questions[round].question);
-    $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon to answer</p>');
+    $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon left to answer</p>');
     gameBoard.append(question);
   };
 
