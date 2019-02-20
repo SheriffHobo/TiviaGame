@@ -57,6 +57,13 @@ $(function () {
       image: "<img src='assets/images/jetfireanswer.jpg' class='img-circle'>"
     }];
 
+    // Click listener
+  gameBoard.on('click', 'h6', function () {
+    var choice = $(this).attr('choice');
+    evaluateAnswer(choice);
+    clearInterval(interval);
+  });
+
   // Start the game
   $("#start").click(playRound);
 
@@ -73,23 +80,22 @@ $(function () {
 
   // Display Qs and As
   function showQuestion() {
-    // $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon to answer</p>');
     timeLeft = 10;
-    interval = setInterval(function() {
-      timeLeft--; 
+    interval = setInterval(function () {
+      timeLeft--;
       $("#time").text(timeLeft);
-      if(timeLeft === 0) {
+      if (timeLeft === 0) {
         clearBoard();
         clearInterval(interval);
         displayTimeoutMessage();
         setTimeout(playRound, 3000);
         incorGuesses++;
         round++;
-    } else if (round === 8) {
-      clearInterval(interval);
-      clearBoard();
-      displayScore();
-    }
+      } else if (round === 8) {
+        clearInterval(interval);
+        clearBoard();
+        displayScore();
+      }
     }, 1000);
     var question = $('<p>').text(questions[round].question);
     $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon to answer</p>');
@@ -147,15 +153,6 @@ $(function () {
     $("#gamearea").append('<p id="start">Until All Are One!</p>');
   };
 
-  // Click listener
-  gameBoard.on('click', 'h6', function () {
-    var choice = $(this).attr('choice');
-    evaluateAnswer(choice);
-    clearInterval(interval);
-  });
-
-  // Need way to display score/reset 
-  // Need timer to stop and not display
-
+  // Need to add reset on score page
 
 });
