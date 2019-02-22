@@ -57,7 +57,7 @@ $(function () {
       image: "<img src='assets/images/jetfireanswer.jpg' class='img-circle'>"
     }];
 
-    // Click listener
+  // Click listener
   gameBoard.on('click', 'h6', function () {
     var choice = $(this).attr('choice');
     evaluateAnswer(choice);
@@ -66,9 +66,12 @@ $(function () {
 
   // Start the game
   $("#start").click(playRound);
+  // $("#restart").click(playRound);
+
 
   // Reset display for each new round
   function playRound() {
+    console.log('hi');
     clearBoard();
     showQuestion();
     displayAnswerChoices();
@@ -88,26 +91,33 @@ $(function () {
         clearBoard();
         clearInterval(interval);
         displayTimeoutMessage();
-        setTimeout(playRound, 3000);
+        setTimeout(playRound, 4000);
         incorGuesses++;
         round++;
       } else if (round === 8) {
         clearInterval(interval);
         clearBoard();
         displayScore();
+        round = 0;
+        corGuesses = 0;
+        incorGuesses = 0;
       }
     }, 1000);
-    var question = $('<p>').text(questions[round].question);
-    $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon left to answer</p>');
-    gameBoard.append(question);
+    if (questions[round]) {
+      var question = $('<p>').text(questions[round].question);
+      $("#gamearea").html('<p>You have <span id=\'time\'>10</span> Energon left to answer</p>');
+      gameBoard.append(question);
+    };
   };
 
   function displayAnswerChoices() {
     var answerBox = $('<div>');
     for (let i = 0; i < 4; i++) {
+      if (questions[round]) {
       var answerChoice = $('<h6>');
       answerChoice.text(questions[round].choices[i]);
       answerChoice.attr('choice', questions[round].choices[i]);
+      };
       answerBox.append(answerChoice);
     }
     gameBoard.append(answerBox);
@@ -117,12 +127,12 @@ $(function () {
   function evaluateAnswer(answerChoice) {
     if (answerChoice === questions[round].correctAnswer) {
       displayWinMessage();
-      setTimeout(playRound, 3000);
+      setTimeout(playRound, 4000);
       corGuesses++;
       round++;
     } else if (answerChoice !== questions[round].correctAnswer) {
       displayWrongMessage();
-      setTimeout(playRound, 3000);
+      setTimeout(playRound, 4000);
       incorGuesses++;
       round++;
     }
@@ -131,28 +141,22 @@ $(function () {
   // Messages to display
   function displayWinMessage() {
     clearBoard();
-    $("#gamearea").html("<p>Excelsior!</p>");
-    $("#gamearea").append('<p>The correct answer was ' + questions[round].correctAnswer + '</p>' + questions[round].image);
+    $("#gamearea").html('<p>Excelsior!</p> <p>The correct answer was ' + questions[round].correctAnswer + '</p>' + questions[round].image);
   };
 
   function displayWrongMessage() {
     clearBoard();
-    $("#gamearea").html("<p>Foolish Human!</p>");
-    $("#gamearea").append('<p>The correct answer was ' + questions[round].correctAnswer + '!</p>' + questions[round].image);
+    $("#gamearea").html('<p>Foolish Human!</p> <p>The correct answer was ' + questions[round].correctAnswer + '!</p>' + questions[round].image);
   };
 
   function displayTimeoutMessage() {
     clearBoard();
-    $("#gamearea").html("<p>You have run out of Energon!</p>");
-    $("#gamearea").append('<p>The correct answer was ' + questions[round].correctAnswer + '!</p>' + questions[round].image);
+    $("#gamearea").html('<p>You have run out of Energon!</p> <p>The correct answer was ' + questions[round].correctAnswer + '!</p>' + questions[round].image);
   };
 
   function displayScore() {
     clearBoard();
-    $("#gamearea").html('<h2>Game Over</h2> <p>Correct answers: ' + corGuesses + '</p> <p>Incorrect answers: ' + incorGuesses + '</p> <p>Try again?</p>');
-    $("#gamearea").append('<p id="start">Until All Are One!</p>');
+    $("#gamearea").html('<h2>Game Over</h2> <p>Correct answers: ' + corGuesses + '</p> <p>Incorrect answers: ' + incorGuesses + '</p> <p>Try again?</p> <p id=\'restart\'>Until All Are One!</p>');
+    $("#restart").click(playRound);
   };
-
-  // Need to add reset on score page
-
 });

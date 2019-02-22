@@ -11,13 +11,13 @@ html {
     font-family: 'Kanit', sans-serif;
 }
 
-#start {
+#start, #restart {
     font: 800;
     font-size: 3rem;
     color: blue;
 }
 
-#start:hover {
+#start:hover, #restart:hover {
     text-shadow: 1px 1px 2px black, 0 0 15px purple, 0 0 15px red;
 }
 
